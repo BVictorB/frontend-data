@@ -25,17 +25,15 @@
 /* -------------------------------------------------------------------------- */
 /*                                    Pages                                   */
 /* -------------------------------------------------------------------------- */
-path {
-   fill: lightblue; 
-   stroke: black;
-   stroke-opacity: .4;
-}
-
 circle:hover {
    fill: hotpink;
+   cursor: pointer;
 }
 
-svg g {
-   width: 600%;
-   height: 600%
+svg {
+   cursor: grab;
+}
+
+svg:active {
+   cursor: grab;
 }
