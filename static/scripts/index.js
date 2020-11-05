@@ -1,9 +1,10 @@
 import { getData } from './partials/getData'
-import { drawMap } from './partials/d3Functions'
+import { plotPoints } from './partials/d3Functions/plotPoints'
 
 getData('https://npropendata.rdw.nl//parkingdata/v2')
     .then(fetchedGarages => {
         const garagePromises = []
+
         fetchedGarages.ParkingFacilities.forEach(fetchedGarage => {
             if (fetchedGarage.name && fetchedGarage.name.toLowerCase().includes('amsterdam')) {
                 garagePromises.push(fetchGarageData(fetchedGarage))
@@ -16,7 +17,7 @@ getData('https://npropendata.rdw.nl//parkingdata/v2')
             filteredGarages.forEach(filteredGarage => {
                 garageObject.features.push(filteredGarage)
             })
-            drawMap(garageObject)
+            plotPoints(garageObject)
         })
     })
 
