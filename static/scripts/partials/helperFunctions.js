@@ -19,3 +19,9 @@ export const formatGeoData = (geoData, areaDescription, areaID) => {
         }
     }
 }
+
+export const convertUnixDate = (unix) => {
+    const milliseconds = unix * 1000
+    const dateObject = new Date(milliseconds)
+    return dateObject.toLocaleString()
+}
