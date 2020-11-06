@@ -1,0 +1,34 @@
+.m-map {
+    .parking-garage {
+        fill: #028090;
+     }
+     
+     .parking-garage:hover {
+        fill: #02c39a;
+        cursor: pointer;
+     }
+     
+     svg {
+        cursor: grab;
+     }
+     
+     svg:active {
+        cursor: grab;
+     }
+    
+     .district-path {
+        fill: none;
+        stroke: #028090;
+        stroke-width: .2;
+     }
+     
+     .geo-path {
+        fill: none;
+        stroke: rgb(140, 140, 140);
+        stroke-width: .1;
+     }
+     
+     svg {
+        background-color: black;
+     }
+}

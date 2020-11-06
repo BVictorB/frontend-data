@@ -48,8 +48,8 @@ const fetchGarageData = (fetchedGarage) => {
 
 
 const parkingGarages = () => {
-    const title = document.querySelector('.sidebar h1')
-    const info = document.querySelector('.sidebar p')
+    const title = document.querySelector('.m-sidebar h1')
+    const info = document.querySelector('.m-sidebar p')
     const parkingGarages = document.querySelectorAll('.parking-garage')
     parkingGarages.forEach(parkingGarage => {
         parkingGarage.addEventListener('click', (e) => {
