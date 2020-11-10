@@ -8,6 +8,15 @@
         cursor: pointer;
      }
      
+     .old-parking-garage {
+      fill: #ff6d00;
+      }
+      
+      .old-parking-garage:hover {
+         fill: #ff9e00;
+         cursor: pointer;
+      }
+
      svg {
         cursor: grab;
      }

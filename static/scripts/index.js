@@ -18,7 +18,6 @@ getData('https://npropendata.rdw.nl//parkingdata/v2')
                 garageObject.features.push(filteredGarage)
             })
             plotPoints(garageObject)
-            parkingGarages()
         })
     })
 
@@ -44,18 +43,4 @@ const fetchGarageData = (fetchedGarage) => {
                 }
             }
         })
-}
-
-
-const parkingGarages = () => {
-    const title = document.querySelector('.m-sidebar h1')
-    const info = document.querySelector('.m-sidebar p')
-    const parkingGarages = document.querySelectorAll('.parking-garage')
-    parkingGarages.forEach(parkingGarage => {
-        parkingGarage.addEventListener('click', (e) => {
-            title.innerHTML = e.target.dataset.name
-            info.innerHTML = `Open sinds ${e.target.dataset.date}`
-        })
-    })
-    // console.log(parkingGarages)
 }
