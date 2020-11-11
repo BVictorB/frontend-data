@@ -1,21 +1,15 @@
 .m-map {
+   background-color: #001427;
+
     .parking-garage {
-        fill: #028090;
+        fill: #f25c54;
+        r: 3;
      }
      
      .parking-garage:hover {
-        fill: #02c39a;
+        fill: #f4845f;
         cursor: pointer;
      }
-     
-     .old-parking-garage {
-      fill: #ff6d00;
-      }
-      
-      .old-parking-garage:hover {
-         fill: #ff9e00;
-         cursor: pointer;
-      }
 
      svg {
         cursor: grab;
@@ -27,17 +21,13 @@
     
      .district-path {
         fill: none;
-        stroke: #028090;
-        stroke-width: .2;
+        stroke: #f25c54;
+        stroke-width: .5;
      }
      
      .geo-path {
         fill: none;
-        stroke: rgb(140, 140, 140);
-        stroke-width: .1;
-     }
-     
-     svg {
-        background-color: black;
+        stroke: #7d8597;
+        stroke-width: .3;
      }
 }

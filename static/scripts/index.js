@@ -26,6 +26,10 @@ const fetchGarageData = (fetchedGarage) => {
         .then(garage => {
             const garageData = garage.parkingFacilityInformation.accessPoints[0]
             if (garageData) {
+                const paymentMethods = []
+                garage.parkingFacilityInformation.paymentMethods.forEach(paymentMethod => {
+                    paymentMethods.push(paymentMethod.method)
+                })
                  return {
                     'geometry': {
                         'type': 'Point', 
@@ -38,7 +42,8 @@ const fetchGarageData = (fetchedGarage) => {
                     'properties': {
                         'name': garage.parkingFacilityInformation.description,
                         'openDate': garage.parkingFacilityInformation.validityStartOfPeriod,
-                        'capacity': garage.parkingFacilityInformation.specifications.capacity
+                        'capacity': garage.parkingFacilityInformation.specifications[0].capacity ? garage.parkingFacilityInformation.specifications[0].capacity : null,
+                        'payment': paymentMethods
                     }
                 }
             }
