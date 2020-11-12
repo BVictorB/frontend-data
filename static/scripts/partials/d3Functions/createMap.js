@@ -1,25 +1,32 @@
 import { zoom } from 'd3'
-import { pathGenerator, getData } from './d3HelperFunctions'
-import { g, svg } from './main'
+import { pathGenerator, getData, formatDistricts } from './d3HelperFunctions'
+import { streets, svg, districts, dataPoints } from './main'
 
 export const createMap = async (amsterdamGeoStreets, amsterdamGeoDistricts) => {
     const amsterdamGeoData = await getData(amsterdamGeoStreets)
     const districtGeoData = await getData(amsterdamGeoDistricts)
+
     const filteredGeoData = amsterdamGeoData.features.filter(e => e.geometry && e.geometry.type !== 'Point' && e.geometry.type !== 'LineString')
-    
+    const districtGeoDataFiltered = formatDistricts(Object.entries(districtGeoData).map(([key, value]) => value))
+        
     svg.call(zoom().on('zoom', (e) => {
-        g.attr('transform', e.transform)
+        streets.attr('transform', e.transform)
+        districts.attr('transform', e.transform)
+        dataPoints.attr('transform', e.transform)
     }))
 
-    g.selectAll('path')
-        .data(districtGeoData.features)
-            .enter()
-                .append('path')
-                .attr('d', pathGenerator)
-                .attr('class', 'district-path')
+    streets.selectAll('path')
         .data(filteredGeoData)
             .enter()
                 .append('path')
                 .attr('d', pathGenerator)
                 .attr('class', 'geo-path')
+
+    districts.selectAll('path')
+        .data(districtGeoDataFiltered)
+            .enter()
+                .append('path')
+                .attr('d', pathGenerator)
+                .attr('class', 'district-path')
+                .on('click', (d, i) => console.log(i.properties.tariffs[0] ? Object.keys(i.properties.tariffs[0]).toString() : null))
 }

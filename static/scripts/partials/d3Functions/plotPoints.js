@@ -1,4 +1,4 @@
-import { g, slider, sliderText, sidebar } from './main'
+import { dataPoints, slider, sliderText, sidebar } from './main'
 import { projection } from './d3HelperFunctions'
 import { convertUnixStampToYear } from '../helperFunctions'
 
@@ -9,7 +9,7 @@ export const plotPoints = (pointData) => {
 }
 
 const renderGarageData = (pointData) => {
-    const points = g.selectAll('circle').data(pointData)
+    const points = dataPoints.selectAll('circle').data(pointData)
 
     points
         .attr("cx", (d) => { return projection(d.geometry.coordinates)[0] })
