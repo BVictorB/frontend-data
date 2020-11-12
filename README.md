@@ -1,5 +1,5 @@
 # Frontend data
-This repo is for the frontend data course assignments of the Information Design Tech Track. In this course we will learn about visualising data with the D3.js library. I will create an interactive map that plots geojson data on the map and lets the user interact with it.  
+This repo is for the frontend data course assignments of the Information Design Tech Track. In this course we will learn about visualising data with the [D3.js library](https://d3js.org/). I will create an interactive map that plots geojson data on the map and lets the user interact with it.  
 
 ![Thinking The Hangover gif](https://media1.tenor.com/images/d955eb63f22e146e4c6fabe4029d90f4/tenor.gif?itemid=10422478)  
 _(https://media1.tenor.com/images/d955eb63f22e146e4c6fabe4029d90f4/tenor.gif?itemid=10422478)_
@@ -12,10 +12,8 @@ Click [here](https://github.com/BVictorB/functional-programming/wiki/Research-da
 ![De Volkskrant](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Volkskrant.svg/1200px-Volkskrant.svg.png)  
 _(https://nl.wikipedia.org/wiki/Bestand:Volkskrant.svg)_
 ***
-## Assignments (functional programming course)
-Retrieve JSON data and practice on cleaning and/or filtering this data so you can use it in your DOM. Use functional programming methods and patterns to clean the data. Write smart functions that are dynamic, so you can reuse them whenever you need them. Create a logical structure in your code, and/or split up files to make everything cleaner.
-
-There are two main folders in this repo: 'survey-assignment' and 'final-assignment'. The first one contains the code that I have written to practice with data cleaning and fetching. The second one (final-assignment) is the folder that contains the beginning of our final deliverable, this contains code to clean/filter the RDW data so I can use it in the following courses.
+## Assignments
+Make a data visualisation with the [D3.js library](https://d3js.org/) where the user can interact with the data that is being shown. Fetch data from an API, convert it to something that you can use. Add, update and remove data depending on user input. Make a visualisation that explains itself.
 ***
 ## Concept
 My idea for this project is to retrieve data from the [RDW datasets](https://opendata.rdw.nl/browse) and from the [datasets of the city of Amsterdam](https://data.amsterdam.nl/) to make an interactive map. I want to plot out different parking areas on the map, with the different prices that are being used. If I can get the data of the history of these parking prices, I want to be able to scroll through time and see how the prices have changed. I also want to plot all the parking garages in Amsterdam on the map, and see when they opened and compare this to the changes in parking prices. And if I have the data for it, I would also like to compare the prices of the parking garages to the prices of parking on the street (also going back in history).
@@ -36,7 +34,7 @@ _(https://tenor.com/view/meeting-bad-parking-car-break-glass-fail-gif-17599579)_
 ## Installing
 - Clone this repo
 ```
-git clone https://github.com/BVictorB/functional-programming.git .
+git clone https://github.com/BVictorB/frontend-data.git .
 ```
 - Install all NPM packages (run this command in both main folders where the package.json file is located)
 ```
@@ -50,5 +48,6 @@ npm run dev
 _(https://tenor.com/view/command-line-site-not-ready-message-comment-gif-10933901)_
 ***
 ## Sources
-- Checking brightness of a color to improve contrast: https://gomakethings.com/dynamically-changing-the-text-color-based-on-background-color-contrast-with-vanilla-js/
 - [MDN](https://developer.mozilla.org/)
+- [D3](https://github.com/d3/d3/wiki)
+- [Data Visualization Course 2018 (by Curran Kelleher)](https://curran.github.io/dataviz-course-2018/)
