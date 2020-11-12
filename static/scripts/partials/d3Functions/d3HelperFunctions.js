@@ -17,6 +17,5 @@ export const formatDistricts = (districtData) => {
         districts.properties.tariffs = district.tarieven
         return districts
     })
-
     return districts
 }

@@ -6,6 +6,7 @@ export const plotPoints = (pointData) => {
     renderGarageData(pointData.features)
     sliderEvent(pointData)
     resetEvent(pointData)
+    document.querySelector('.loading').classList.add('loaded')
 }
 
 const renderGarageData = (pointData) => {
@@ -47,18 +48,16 @@ const renderGarageInfo = (garageInfo) => {
 const sliderEvent = (pointData) => {
     slider
     .on('input', () => {
-        const selectedYear = Number('20' + slider.node().value)
-        sliderText.text(selectedYear)
-        updatePointData(selectedYear, pointData)
+        updatePointData(slider.node().value, pointData)
     })
     .on('change', () => {
-        const selectedYear = Number('20' + slider.node().value)
-        sliderText.text(selectedYear)
-        updatePointData(selectedYear, pointData)
+        updatePointData(slider.node().value, pointData)
     })
 }
 
-const updatePointData = (selectedYear, pointData) => {
+const updatePointData = (year, pointData) => {
+    const selectedYear = Number('20' + year)
+    sliderText.text(selectedYear)
     const filteredPointData = pointData.features.filter(e => e.properties && convertUnixStampToYear(e.properties.openDate) === selectedYear)
     renderGarageData(filteredPointData)
 }
