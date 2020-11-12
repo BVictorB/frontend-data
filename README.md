@@ -1,8 +1,8 @@
 # Frontend data
 This repo is for the frontend data course assignments of the Information Design Tech Track. In this course we will learn about visualising data with the D3.js library. I will create an interactive map that plots geojson data on the map and lets the user interact with it.  
 
-![Jim Carrey typing gif](https://media1.tenor.com/images/505ddb5e0b0e8c3e96b66e1469ef47c1/tenor.gif)  
-_(https://tenor.com/view/typing-jim-carrey-fast-busy-gif-4903969)_
+![Thinking The Hangover gif](https://media1.tenor.com/images/d955eb63f22e146e4c6fabe4029d90f4/tenor.gif?itemid=10422478)  
+_(https://media1.tenor.com/images/d955eb63f22e146e4c6fabe4029d90f4/tenor.gif?itemid=10422478)_
 ***
 ## Debriefing
 The newspaper 'De Volkskrant' wants to get interesting insights on connections in the RDW datasets. It is our job to find interesting information in the datasets, and make a data visualization about that information/subject. De Volkskrant can that see if they can use the information shown to write an interesting article.
