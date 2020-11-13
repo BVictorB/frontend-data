@@ -29,15 +29,15 @@ export const zoomToArea = (i) => {
             .text('')
     }
 
-    districts.transition()
-        .duration(500)
-        .attr('transform', `translate(${width},${height})scale(${zoomLevel})translate(${-x},${-y})`)
+    // districts.transition()
+    //     .duration(500)
+    //     .attr('transform', `translate(${width},${height})scale(${zoomLevel})translate(${-x},${-y})`)
 
-    streets.transition()
-        .duration(500)
-        .attr('transform', `translate(${width},${height})scale(${zoomLevel})translate(${-x},${-y})`)
+    // streets.transition()
+    //     .duration(500)
+    //     .attr('transform', `translate(${width},${height})scale(${zoomLevel})translate(${-x},${-y})`)
 
-    dataPoints.transition()
-        .duration(500)
-        .attr('transform', `translate(${width},${height})scale(${zoomLevel})translate(${-x},${-y})`)
+    // dataPoints.transition()
+    //     .duration(500)
+    //     .attr('transform', `translate(${width},${height})scale(${zoomLevel})translate(${-x},${-y})`)
 }

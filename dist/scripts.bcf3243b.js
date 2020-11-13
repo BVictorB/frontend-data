@@ -31010,13 +31010,16 @@ const zoomToArea = i => {
     _main.areaTitle.text('Select an area');
 
     _main.areaPrice.text('');
-  }
+  } // districts.transition()
+  //     .duration(500)
+  //     .attr('transform', `translate(${width},${height})scale(${zoomLevel})translate(${-x},${-y})`)
+  // streets.transition()
+  //     .duration(500)
+  //     .attr('transform', `translate(${width},${height})scale(${zoomLevel})translate(${-x},${-y})`)
+  // dataPoints.transition()
+  //     .duration(500)
+  //     .attr('transform', `translate(${width},${height})scale(${zoomLevel})translate(${-x},${-y})`)
 
-  _main.districts.transition().duration(500).attr('transform', "translate(".concat(width, ",").concat(height, ")scale(").concat(zoomLevel, ")translate(").concat(-x, ",").concat(-y, ")"));
-
-  _main.streets.transition().duration(500).attr('transform', "translate(".concat(width, ",").concat(height, ")scale(").concat(zoomLevel, ")translate(").concat(-x, ",").concat(-y, ")"));
-
-  _main.dataPoints.transition().duration(500).attr('transform', "translate(".concat(width, ",").concat(height, ")scale(").concat(zoomLevel, ")translate(").concat(-x, ",").concat(-y, ")"));
 };
 
 exports.zoomToArea = zoomToArea;
@@ -31248,7 +31251,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61986" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51867" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
