@@ -14,6 +14,7 @@ _(https://nl.wikipedia.org/wiki/Bestand:Volkskrant.svg)_
 ***
 ## Assignments
 Make a data visualisation with the [D3.js library](https://d3js.org/) where the user can interact with the data that is being shown. Fetch data from an API, convert it to something that you can use. Add, update and remove data depending on user input. Make a visualisation that explains itself.
+I used [this](https://www.youtube.com/watch?v=Qw6uAg3EO64) tutorial from Curran as resource to build the map, it was very well made, he made it very clear how everything works. I also used [this one](https://www.youtube.com/watch?v=9ZB1EgaJnBU) about interactions with the map and [this one](https://www.youtube.com/watch?v=c0a02WHjgEs) for plotting circles on a map.
 ***
 ## Concept
 My idea for this project is to retrieve data from the [RDW datasets](https://opendata.rdw.nl/browse) and from the [datasets of the city of Amsterdam](https://data.amsterdam.nl/) to make an interactive map. I want to plot out different parking areas on the map, with the different prices that are being used. If I can get the data of the history of these parking prices, I want to be able to scroll through time and see how the prices have changed. I also want to plot all the parking garages in Amsterdam on the map, and see when they opened and compare this to the changes in parking prices. And if I have the data for it, I would also like to compare the prices of the parking garages to the prices of parking on the street (also going back in history).
