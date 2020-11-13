@@ -35,13 +35,10 @@ const renderGarageData = (pointData) => {
 
 const renderGarageInfo = (garageInfo) => {
     sidebar.selectAll('.name')
-        .attr("id", "removablediv")
         .text(garageInfo.properties.name)
     sidebar.selectAll('.year')
-        .attr("id", "removablediv")
         .text(`Year: ${convertUnixStampToYear(garageInfo.properties.openDate)}`)
     sidebar.selectAll('.capacity')
-        .attr("id", "removablediv")
         .text(`Capacity: ${garageInfo.properties.capacity}`)
 }
 

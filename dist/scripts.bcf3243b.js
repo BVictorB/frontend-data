@@ -30970,7 +30970,56 @@ const formatDistricts = districtData => {
 };
 
 exports.formatDistricts = formatDistricts;
-},{"d3":"../node_modules/d3/index.js"}],"scripts/partials/d3Functions/createMap.js":[function(require,module,exports) {
+},{"d3":"../node_modules/d3/index.js"}],"scripts/partials/d3Functions/zoomToArea.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.zoomToArea = void 0;
+
+var _d3HelperFunctions = require("./d3HelperFunctions");
+
+var _main = require("./main");
+
+const width = 960;
+const height = 500;
+let centered;
+
+const zoomToArea = i => {
+  let x, y, zoomLevel;
+
+  if (i && centered !== i) {
+    const centroid = _d3HelperFunctions.pathGenerator.centroid(i.geometry);
+
+    x = centroid[0];
+    y = centroid[1];
+    zoomLevel = 5;
+    centered = i;
+
+    _main.areaTitle.text('Area price');
+
+    _main.areaPrice.text("\u20AC".concat(i.properties.tariffs[0] ? Object.keys(i.properties.tariffs[0]).toString() : null, " per hour"));
+  } else {
+    x = width / 2;
+    y = height / 2;
+    zoomLevel = 1;
+    centered = null;
+
+    _main.areaTitle.text('Select an area');
+
+    _main.areaPrice.text('');
+  }
+
+  _main.districts.transition().duration(500).attr('transform', "translate(".concat(width, ",").concat(height, ")scale(").concat(zoomLevel, ")translate(").concat(-x, ",").concat(-y, ")"));
+
+  _main.streets.transition().duration(500).attr('transform', "translate(".concat(width, ",").concat(height, ")scale(").concat(zoomLevel, ")translate(").concat(-x, ",").concat(-y, ")"));
+
+  _main.dataPoints.transition().duration(500).attr('transform', "translate(".concat(width, ",").concat(height, ")scale(").concat(zoomLevel, ")translate(").concat(-x, ",").concat(-y, ")"));
+};
+
+exports.zoomToArea = zoomToArea;
+},{"./d3HelperFunctions":"scripts/partials/d3Functions/d3HelperFunctions.js","./main":"scripts/partials/d3Functions/main.js"}],"scripts/partials/d3Functions/createMap.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -30983,6 +31032,8 @@ var _d = require("d3");
 var _d3HelperFunctions = require("./d3HelperFunctions");
 
 var _main = require("./main");
+
+var _zoomToArea = require("./zoomToArea");
 
 const createMap = async (amsterdamGeoStreets, amsterdamGeoDistricts) => {
   const amsterdamGeoData = await (0, _d3HelperFunctions.getData)(amsterdamGeoStreets);
@@ -31003,17 +31054,18 @@ const createMap = async (amsterdamGeoStreets, amsterdamGeoDistricts) => {
 
   _main.streets.selectAll('path').data(filteredGeoData).enter().append('path').attr('d', _d3HelperFunctions.pathGenerator).attr('class', 'geo-path');
 
-  _main.districts.selectAll('path').data(districtGeoDataFiltered).enter().append('path').attr('d', _d3HelperFunctions.pathGenerator).attr('class', 'district-path').on('click', (d, i) => console.log(i.properties.tariffs[0] ? Object.keys(i.properties.tariffs[0]).toString() : null));
+  _main.districts.selectAll('path').data(districtGeoDataFiltered).enter().append('path').attr('d', _d3HelperFunctions.pathGenerator).attr('class', 'district-path') // .on('click', (d, i) => console.log(i.properties.tariffs[0] ? Object.keys(i.properties.tariffs[0]).toString() : null))
+  .on('click', (d, i) => (0, _zoomToArea.zoomToArea)(i));
 };
 
 exports.createMap = createMap;
-},{"d3":"../node_modules/d3/index.js","./d3HelperFunctions":"scripts/partials/d3Functions/d3HelperFunctions.js","./main":"scripts/partials/d3Functions/main.js"}],"scripts/partials/d3Functions/main.js":[function(require,module,exports) {
+},{"d3":"../node_modules/d3/index.js","./d3HelperFunctions":"scripts/partials/d3Functions/d3HelperFunctions.js","./main":"scripts/partials/d3Functions/main.js","./zoomToArea":"scripts/partials/d3Functions/zoomToArea.js"}],"scripts/partials/d3Functions/main.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.amsterdamGeoDistricts = exports.amsterdamGeoStreets = exports.sliderText = exports.sidebar = exports.slider = exports.dataPoints = exports.districts = exports.streets = exports.svg = void 0;
+exports.amsterdamGeoDistricts = exports.amsterdamGeoStreets = exports.areaTitle = exports.areaPrice = exports.sliderText = exports.sidebar = exports.slider = exports.dataPoints = exports.districts = exports.streets = exports.svg = void 0;
 
 var _d = require("d3");
 
@@ -31026,10 +31078,14 @@ const svg = (0, _d.select)('svg'),
       slider = (0, _d.select)('.slider'),
       sidebar = (0, _d.select)('.m-sidebar'),
       sliderText = (0, _d.select)('.selected-year'),
+      areaPrice = (0, _d.select)('.area-price'),
+      areaTitle = (0, _d.select)('.area-title'),
       amsterdamGeoStreets = 'https://gist.githubusercontent.com/BVictorB/f0859579f276725bbdd27e01b8c73fab/raw/2d3caf5e08b24df850d79479201d518f505d4777/amsterdam.geojson',
       amsterdamGeoDistricts = 'https://amsterdam-maps.bma-collective.com/embed/parkeren/deploy_data/tarieven.json';
 exports.amsterdamGeoDistricts = amsterdamGeoDistricts;
 exports.amsterdamGeoStreets = amsterdamGeoStreets;
+exports.areaTitle = areaTitle;
+exports.areaPrice = areaPrice;
 exports.sliderText = sliderText;
 exports.sidebar = sidebar;
 exports.slider = slider;
@@ -31078,11 +31134,11 @@ const renderGarageData = pointData => {
 };
 
 const renderGarageInfo = garageInfo => {
-  _main.sidebar.selectAll('.name').attr("id", "removablediv").text(garageInfo.properties.name);
+  _main.sidebar.selectAll('.name').text(garageInfo.properties.name);
 
-  _main.sidebar.selectAll('.year').attr("id", "removablediv").text("Year: ".concat((0, _helperFunctions.convertUnixStampToYear)(garageInfo.properties.openDate)));
+  _main.sidebar.selectAll('.year').text("Year: ".concat((0, _helperFunctions.convertUnixStampToYear)(garageInfo.properties.openDate)));
 
-  _main.sidebar.selectAll('.capacity').attr("id", "removablediv").text("Capacity: ".concat(garageInfo.properties.capacity));
+  _main.sidebar.selectAll('.capacity').text("Capacity: ".concat(garageInfo.properties.capacity));
 };
 
 const sliderEvent = pointData => {
@@ -31113,14 +31169,22 @@ const resetEvent = pointData => {
 },{"./main":"scripts/partials/d3Functions/main.js","./d3HelperFunctions":"scripts/partials/d3Functions/d3HelperFunctions.js","../helperFunctions":"scripts/partials/helperFunctions.js"}],"scripts/index.js":[function(require,module,exports) {
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.loadingText = void 0;
+
 var _getData = require("./partials/getData");
 
 var _plotPoints = require("./partials/d3Functions/plotPoints");
 
+const loadingText = document.querySelector('.loading-text');
+exports.loadingText = loadingText;
 (0, _getData.getData)('https://npropendata.rdw.nl//parkingdata/v2').then(fetchedGarages => {
   const garagePromises = [];
   fetchedGarages.ParkingFacilities.forEach(fetchedGarage => {
     if (fetchedGarage.name && fetchedGarage.name.toLowerCase().includes('amsterdam')) {
+      loadingText.innerHTML = "Fetching garage data: ".concat(fetchedGarage.name);
       garagePromises.push(fetchGarageData(fetchedGarage));
     }
   });
@@ -31141,6 +31205,7 @@ const fetchGarageData = fetchedGarage => {
     const garageData = garage.parkingFacilityInformation.accessPoints[0];
 
     if (garageData) {
+      loadingText.innerHTML = "Creating objects: ".concat(garage.parkingFacilityInformation.description);
       const paymentMethods = [];
       garage.parkingFacilityInformation.paymentMethods.forEach(paymentMethod => {
         paymentMethods.push(paymentMethod.method);
@@ -31189,7 +31254,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50697" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50196" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

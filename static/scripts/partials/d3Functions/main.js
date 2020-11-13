@@ -9,6 +9,8 @@ export const
     slider = select('.slider'),
     sidebar = select('.m-sidebar'),
     sliderText = select('.selected-year'),
+    areaPrice = select('.area-price'),
+    areaTitle = select('.area-title'),
     amsterdamGeoStreets = 'https://gist.githubusercontent.com/BVictorB/f0859579f276725bbdd27e01b8c73fab/raw/2d3caf5e08b24df850d79479201d518f505d4777/amsterdam.geojson',
     amsterdamGeoDistricts = 'https://amsterdam-maps.bma-collective.com/embed/parkeren/deploy_data/tarieven.json'
 

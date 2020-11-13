@@ -1,12 +1,15 @@
 import { getData } from './partials/getData'
 import { plotPoints } from './partials/d3Functions/plotPoints'
 
+export const loadingText = document.querySelector('.loading-text')
+
 getData('https://npropendata.rdw.nl//parkingdata/v2')
     .then(fetchedGarages => {
         const garagePromises = []
 
         fetchedGarages.ParkingFacilities.forEach(fetchedGarage => {
             if (fetchedGarage.name && fetchedGarage.name.toLowerCase().includes('amsterdam')) {
+                loadingText.innerHTML = `Fetching garage data: ${fetchedGarage.name}`
                 garagePromises.push(fetchGarageData(fetchedGarage))
             }
         })
@@ -26,6 +29,7 @@ const fetchGarageData = (fetchedGarage) => {
         .then(garage => {
             const garageData = garage.parkingFacilityInformation.accessPoints[0]
             if (garageData) {
+                loadingText.innerHTML = `Creating objects: ${garage.parkingFacilityInformation.description}`
                 const paymentMethods = []
                 garage.parkingFacilityInformation.paymentMethods.forEach(paymentMethod => {
                     paymentMethods.push(paymentMethod.method)

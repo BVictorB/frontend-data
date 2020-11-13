@@ -610,6 +610,10 @@ span {
 }
 .loading h2 {
   font-size: 60px;
+  margin-bottom: 0;
+}
+.loading p {
+  margin-bottom: 50px;
 }
 
 .lds-dual-ring {
