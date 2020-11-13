@@ -19,6 +19,12 @@ I used [this](https://www.youtube.com/watch?v=Qw6uAg3EO64) tutorial from Curran 
 ## Concept
 My idea for this project is to retrieve data from the [RDW datasets](https://opendata.rdw.nl/browse) and from the [datasets of the city of Amsterdam](https://data.amsterdam.nl/) to make an interactive map. I want to plot out different parking areas on the map, with the different prices that are being used. If I can get the data of the history of these parking prices, I want to be able to scroll through time and see how the prices have changed. I also want to plot all the parking garages in Amsterdam on the map, and see when they opened and compare this to the changes in parking prices. And if I have the data for it, I would also like to compare the prices of the parking garages to the prices of parking on the street (also going back in history).
 
+![Map with plotted points](https://user-images.githubusercontent.com/10921830/99064788-b23be280-25a6-11eb-82c2-e71524fab4df.png)
+_The map with the parking garages plotted on it._  
+
+![Map with plotted points](https://user-images.githubusercontent.com/10921830/99064781-aea85b80-25a6-11eb-8dd8-962816b8b8df.png)
+_The map with the sidebar next to it that is used for filtered and getting more information._
+
 ### Research question(s)
 I have created a few research questions to support my research. There is a main research question that I find most important in my assignment, I will mostly focus on this one. But I will also try to implement answering assets/features for the other research questions.
 ### **_Is there a connection between the increasing parking prices and the opening of new parking garages in Amsterdam?_**
