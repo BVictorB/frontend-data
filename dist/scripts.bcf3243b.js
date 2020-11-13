@@ -165,8 +165,7 @@ const getData = (url, key) => {
 exports.getData = getData;
 
 const fetchData = async url => {
-  const proxy = 'https://cors-anywhere.herokuapp.com/';
-  const response = await fetch(proxy + url);
+  const response = await fetch(url);
   const data = await response.json();
   return data;
 };
@@ -31054,8 +31053,7 @@ const createMap = async (amsterdamGeoStreets, amsterdamGeoDistricts) => {
 
   _main.streets.selectAll('path').data(filteredGeoData).enter().append('path').attr('d', _d3HelperFunctions.pathGenerator).attr('class', 'geo-path');
 
-  _main.districts.selectAll('path').data(districtGeoDataFiltered).enter().append('path').attr('d', _d3HelperFunctions.pathGenerator).attr('class', 'district-path') // .on('click', (d, i) => console.log(i.properties.tariffs[0] ? Object.keys(i.properties.tariffs[0]).toString() : null))
-  .on('click', (d, i) => (0, _zoomToArea.zoomToArea)(i));
+  _main.districts.selectAll('path').data(districtGeoDataFiltered).enter().append('path').attr('d', _d3HelperFunctions.pathGenerator).attr('class', 'district-path').on('click', (d, i) => (0, _zoomToArea.zoomToArea)(i));
 };
 
 exports.createMap = createMap;
@@ -31169,17 +31167,12 @@ const resetEvent = pointData => {
 },{"./main":"scripts/partials/d3Functions/main.js","./d3HelperFunctions":"scripts/partials/d3Functions/d3HelperFunctions.js","../helperFunctions":"scripts/partials/helperFunctions.js"}],"scripts/index.js":[function(require,module,exports) {
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.loadingText = void 0;
-
 var _getData = require("./partials/getData");
 
 var _plotPoints = require("./partials/d3Functions/plotPoints");
 
 const loadingText = document.querySelector('.loading-text');
-exports.loadingText = loadingText;
+const proxy = 'https://cors-anywhere.herokuapp.com/';
 (0, _getData.getData)('https://npropendata.rdw.nl//parkingdata/v2').then(fetchedGarages => {
   const garagePromises = [];
   fetchedGarages.ParkingFacilities.forEach(fetchedGarage => {
@@ -31201,7 +31194,7 @@ exports.loadingText = loadingText;
 });
 
 const fetchGarageData = fetchedGarage => {
-  return (0, _getData.getData)(fetchedGarage.staticDataUrl).then(garage => {
+  return (0, _getData.getData)(proxy + fetchedGarage.staticDataUrl).then(garage => {
     const garageData = garage.parkingFacilityInformation.accessPoints[0];
 
     if (garageData) {
@@ -31254,7 +31247,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50196" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61496" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
