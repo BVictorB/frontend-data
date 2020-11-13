@@ -152,6 +152,8 @@ exports.getData = void 0;
 
 var _helperFunctions = require("./helperFunctions");
 
+const proxy = 'https://cors-anywhere.herokuapp.com/';
+
 const getData = (url, key) => {
   return fetchData(url).then(data => {
     if (key) {
@@ -165,7 +167,7 @@ const getData = (url, key) => {
 exports.getData = getData;
 
 const fetchData = async url => {
-  const response = await fetch(url);
+  const response = await fetch(proxy + url);
   const data = await response.json();
   return data;
 };
@@ -31172,7 +31174,6 @@ var _getData = require("./partials/getData");
 var _plotPoints = require("./partials/d3Functions/plotPoints");
 
 const loadingText = document.querySelector('.loading-text');
-const proxy = 'https://cors-anywhere.herokuapp.com/';
 (0, _getData.getData)('https://npropendata.rdw.nl//parkingdata/v2').then(fetchedGarages => {
   const garagePromises = [];
   fetchedGarages.ParkingFacilities.forEach(fetchedGarage => {
@@ -31194,7 +31195,7 @@ const proxy = 'https://cors-anywhere.herokuapp.com/';
 });
 
 const fetchGarageData = fetchedGarage => {
-  return (0, _getData.getData)(proxy + fetchedGarage.staticDataUrl).then(garage => {
+  return (0, _getData.getData)(fetchedGarage.staticDataUrl).then(garage => {
     const garageData = garage.parkingFacilityInformation.accessPoints[0];
 
     if (garageData) {
@@ -31247,7 +31248,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61496" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61986" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
