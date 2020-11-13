@@ -11,8 +11,7 @@ export const getData = (url, key) => {
 }
 
 const fetchData = async (url) => {
-    const proxy = 'https://cors-anywhere.herokuapp.com/'
-    const response = await fetch(proxy + url)
+    const response = await fetch(url)
     const data = await response.json()
     return data
 }

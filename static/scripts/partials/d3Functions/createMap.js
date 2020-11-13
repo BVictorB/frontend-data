@@ -29,7 +29,5 @@ export const createMap = async (amsterdamGeoStreets, amsterdamGeoDistricts) => {
                 .append('path')
                 .attr('d', pathGenerator)
                 .attr('class', 'district-path')
-                // .on('click', (d, i) => console.log(i.properties.tariffs[0] ? Object.keys(i.properties.tariffs[0]).toString() : null))
                 .on('click', (d, i) => zoomToArea(i))
-        
 }

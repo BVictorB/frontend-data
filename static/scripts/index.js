@@ -1,7 +1,8 @@
 import { getData } from './partials/getData'
 import { plotPoints } from './partials/d3Functions/plotPoints'
 
-export const loadingText = document.querySelector('.loading-text')
+const loadingText = document.querySelector('.loading-text')
+const proxy = 'https://cors-anywhere.herokuapp.com/'
 
 getData('https://npropendata.rdw.nl//parkingdata/v2')
     .then(fetchedGarages => {
@@ -25,7 +26,7 @@ getData('https://npropendata.rdw.nl//parkingdata/v2')
     })
 
 const fetchGarageData = (fetchedGarage) => {
-    return getData(fetchedGarage.staticDataUrl)
+    return getData(proxy + fetchedGarage.staticDataUrl)
         .then(garage => {
             const garageData = garage.parkingFacilityInformation.accessPoints[0]
             if (garageData) {
